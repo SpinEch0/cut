@@ -1,0 +1,89 @@
+[tool.poetry]
+name = "cut"
+version = "0.0.1"
+description = "A C unit test case generator"
+authors = ["Cut"]
+readme = "README.md"
+
+keywords = [
+    "unit test",
+    "symbolic executation",
+    "test generation",
+    "fault injection"
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.6",
+    "Topic :: Education :: Testing",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Software Development :: Testing :: Unit",
+    "Topic :: Software Development :: Testing :: Fault Injection",
+    "Typing :: Typed",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.6"
+codechecker = "^6.19.1"
+simple-parsing = "^0.0.20"
+pycparser = "^2.21"
+cfile = "^0.2.0"
+clang = "^14.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1"
+pre-commit = "^2.20.0"
+
+[tool.poetry.scripts]
+cut = "cut.cli:main"
+
+[tool.black]
+line-length = 120
+target_version = ['py37']
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs          # exclude a few common directories in the
+    | \.git           # root of the project
+    | \.pytest_cache
+    | \.mypy_cache
+    | \.venv
+    | venv
+    | _build
+    | build
+    | dist
+    | pynguin.egg-info
+  )/
+)
+'''
+
+[tool.isort]
+line_length=120
+multi_line_output=3
+include_trailing_comma=true
+indent='    '
+
+[tool.mypy]
+check_untyped_defs = true
+ignore_errors = false
+ignore_missing_imports = true
+strict_optional = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unused_configs = true
+
+
+
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
