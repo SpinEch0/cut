@@ -7,21 +7,14 @@ include(AddLLVM)
 
 message(STATUS "Found LLVM ${LLVM_PACKAGE_VERSION}")
 
-set(Z3_DIR "/usr/include")
-get_filename_component(Z3_DIR ${Z3_DIR} ABSOLUTE)
-set(Z3_CXX_INCLUDE_DIRS ${Z3_DIR}/include)
-set(Z3_LIBRARIES "/usr/lib/x86_64-linux-gnu/libz3.so")
-message(STATUS "Z3_DIR: ${Z3_DIR}")
-
 add_definitions(${LLVM_DEFINITIONS})
 include_directories(${LLVM_INCLUDE_DIRS} include)
-include_directories(${Z3_CXX_INCLUDE_DIRS})
 link_directories(${LLVM_LIBRARY_DIRS} ${CMAKE_CURRENT_BINARY_DIR})
 
 FILE(GLOB_RECURSE SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
-add_executable(constraint ${SRC})
+add_executable(kut ${SRC})
 
 llvm_map_components_to_libnames(llvm_libs support core irreader)
 
-target_link_libraries(constraint ${llvm_libs} ${Z3_LIBRARIES})
+target_link_libraries(path ${llvm_libs} ${Z3_LIBRARIES})

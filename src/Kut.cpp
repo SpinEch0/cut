@@ -18,7 +18,6 @@
 #include "llvm/Analysis/CFGPrinter.h"
 #include <fstream>
 
-#include "Extractor.h"
 #include "AnalyzeGraph.h"
 
 using namespace llvm;

@@ -1,5 +1,5 @@
-#ifndef ANALYZEGRAPH_H
-#define ANALYZEGRAPH_H
+#ifndef CODEPATH_H
+#define CODEPATH_H
 #include "llvm/Pass.h"
 #include "llvm/IR/PassManager.h"
 #include "llvm/ADT/PostOrderIterator.h"
@@ -21,22 +21,20 @@
 #include <iostream>
 #include <stdlib.h>
 
-#include "CodePath.h"
 using namespace llvm;
 
-class AnalyzeBBGraph : public FunctionPass {
+class CodePath {
  public:
-  AnalyzeBBGraph()
-      : FunctionPass(ID) {}
-
-  virtual bool runOnFunction(Function &F);
-
-  // The address of this member is used to uniquely identify the class. This is
-  // used by LLVM's own RTTI mechanism.
-  static char ID;
-
- private:
-  std::string AnalysisKind;
-  std::vector<CodePath> paths;
+  CodePath() {};
+  void Push(BasicBlock *node) {
+    nodes.push_back(node);
+  }
+  void Print() {
+    errs() << "\n\nstart";
+    for (auto i : nodes) {
+      errs() << "->" << i->getName();
+    }
+  }
+  std::vector<BasicBlock *> nodes;
 };
 #endif
