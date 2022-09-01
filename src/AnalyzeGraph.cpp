@@ -19,7 +19,6 @@
 #include <iostream>
 #include <stdlib.h>
 #include "AnalyzeGraph.h"
-#include "Solver.h"
 
 using namespace llvm;
 
